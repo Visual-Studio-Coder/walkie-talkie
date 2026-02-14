@@ -1,6 +1,7 @@
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.util.Scanner;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.TargetDataLine;
@@ -10,9 +11,21 @@ public class App {
     static DatagramSocket socket;
     static int localPort = 991;
     static int targetPort = 991;
-    static String targetIP = "127.0.0.1";
+    static String targetIP = "192.168.1.202";
 
     public static void main(String[] args) throws Exception {
+        Scanner s = new Scanner(System.in);
+        // System.out.println("Who's IP do you want to chat with?");
+        targetIP = s.next();
+        // System.out.println(
+        //     "What local port would you like to receive messages on?"
+        // );
+        // localPort = s.nextInt();
+        // System.out.println(
+        //     "What port would your contact like to receive messages on?"
+        // );
+        // targetPort = s.nextInt();
+
         socket = new DatagramSocket(localPort);
 
         new Thread(() -> {
@@ -49,7 +62,7 @@ public class App {
         byte[] buffer = new byte[1024];
 
         var senderSocket = new DatagramSocket();
-        InetAddress address = InetAddress.getLoopbackAddress();
+        InetAddress address = InetAddress.getByName(targetIP);
 
         TargetDataLine mic = AudioConfig.getMicrophone();
 
