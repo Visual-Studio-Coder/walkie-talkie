@@ -11,11 +11,11 @@ public class App {
     static DatagramSocket socket;
     static int localPort = 991;
     static int targetPort = 991;
-    static String targetIP = "192.168.1.202";
+    static String targetIP = "";
 
     public static void main(String[] args) throws Exception {
         Scanner s = new Scanner(System.in);
-        // System.out.println("Who's IP do you want to chat with?");
+        System.out.println("Who's IP do you want to chat with?");
         targetIP = s.next();
         // System.out.println(
         //     "What local port would you like to receive messages on?"
